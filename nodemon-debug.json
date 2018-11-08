@@ -1,0 +1,6 @@
+{
+  "watch": ["src/**/*.ts"],
+  "execMap": {
+    "ts": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' node -r ts-node/register --inspect=9000"
+  }
+}

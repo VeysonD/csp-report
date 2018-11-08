@@ -4,6 +4,6 @@ import React from 'react';
 export default () => (
   <ul>
     <li>hi</li>
-    <li>hi2</li>
+    <li>there</li>
   </ul>
 )

@@ -4,7 +4,8 @@
   "description": "Log CSP Reports Endpoint",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server/index.ts",
+    "debug": "nodemon --config nodemon-debug.json ./server/index.ts",
+    "dev": "nodemon ./server/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
