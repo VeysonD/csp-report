@@ -1,13 +1,13 @@
-import * as helmet from 'helmet';
+import * as helmet from 'koa-helmet';
 import * as uuidv4 from 'uuid/v4';
 
-export const csp = (app: any) => {
-  app.use((_, res, next) => {
-    res.locals.nonce = Buffer.from(uuidv4()).toString('base64');
+export const csp = (app) => {
+  app.use((ctx, next) => {
+    ctx.res.nonce = Buffer.from(uuidv4()).toString('base64');
     next();
   });
 
-  const nonce = (_, res) => `'nonce-${res.locals.nonce}'`;
+  const nonce = (ctx, _) => `'nonce-${ctx.res.nonce}'`;
   const scriptSrc = [nonce, "'strict-dynamic'", "'unsafe-inline'", 'https:'];
 
   if (process.env.NODE_ENV !== 'production') {

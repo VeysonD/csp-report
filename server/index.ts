@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as next from 'next';
-import * as csp from './csp';
+import * as body from 'koa-better-body';
 // import { parse } from 'url';
 
 const port = process.env.PORT || 8080;
@@ -14,8 +14,7 @@ const run = () => {
     const server = new Koa();
     const router = new Router();
 
-    console.log('What does the csp look like: ', csp);
-    // csp(server);
+    server.use(body());
 
     router.get('*', async ctx => {
       await routes(ctx.req, ctx.res);
@@ -23,13 +22,18 @@ const run = () => {
     });
 
     router.post('/csp-report', async ctx => {
-      console.log('What does the ctx request look like: ', ctx.req);
+      console.log('CSP Report: ', ctx.request.fields);
+    });
+
+    server.use(async (ctx, next) => {
+      ctx.set('Content-Security-Policy', "default-src 'none'; script-src 'none'; report-uri http://localhost:8080/csp-report");
+      await next();
     });
 
     server.use(async (ctx, next) => {
       ctx.res.statusCode = 200;
       await next();
-    })
+    });
 
     server.use(router.routes());
 

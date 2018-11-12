@@ -2,8 +2,12 @@ import React from 'react';
 // import Link from 'next/link';
 
 export default () => (
-  <ul>
-    <li>hi</li>
-    <li>there</li>
-  </ul>
+  <html>
+    <body>
+      <div>
+      Test
+      </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </html>
 )
