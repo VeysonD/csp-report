@@ -26,7 +26,7 @@ const run = () => {
     });
 
     server.use(async (ctx, next) => {
-      ctx.set('Content-Security-Policy', "default-src 'none'; script-src 'none'; report-uri http://localhost:8080/csp-report");
+      ctx.set('Content-Security-Policy', "default-src 'none'; script-src 'none'; report-uri https://asia-northeast1-kouzoh-p-veysond.cloudfunctions.net/cspReports");
       await next();
     });
 
