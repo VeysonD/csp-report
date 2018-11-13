@@ -21,7 +21,6 @@ export async function queryStackOverflow() {
   `;
 
   const options = {
-    query: sqlQuery,
     location: 'US',
   };
 
