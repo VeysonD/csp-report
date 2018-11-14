@@ -1,2 +1,8 @@
+# Dependencies
 node_modules
+
 .next
+
+#Environment
+.env
+.vscode
