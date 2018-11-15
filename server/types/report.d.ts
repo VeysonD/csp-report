@@ -7,7 +7,7 @@ export interface Report {
   'original-policy': string,
   'referrer'?: string,
   'script-sample'?: string,
-  'source-file': string,
+  'source-file'?: string,
   'status-code': number,
   'violated-directive': string,
 }
