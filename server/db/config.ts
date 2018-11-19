@@ -31,7 +31,7 @@ export async function queryStackOverflow() {
   });
 }
 
-export async function insertReport(report: Report) {
+export async function insertReport(report: Report, userAgent: string) {
   const {
     'blocked-uri': blockedUri,
     disposition,
@@ -74,7 +74,8 @@ export async function insertReport(report: Report) {
       script_sample,
       source_file,
       status_code,
-      violated_directive
+      violated_directive,
+      user_agent
     )
     VALUES (
       '${blockedUri}',
@@ -87,7 +88,8 @@ export async function insertReport(report: Report) {
       '${scriptSample}',
       ${sourceFile},
       ${statusCode},
-      '${violatedDirective}'
+      '${violatedDirective}',
+      '${userAgent}'
     )
   `;
 

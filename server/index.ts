@@ -26,20 +26,21 @@ const run = () => {
     // local csp report testing
     router.post('/csp-report', async ctx => {
       const report = ctx.request.fields['csp-report'];
-      console.log('CSP Report: ', report);
-      insertReport(report)
+      const userAgent = ctx.req.headers['user-agent'];
+      console.log('CSP Report and userAgent: ', report, userAgent);
+      insertReport(report, userAgent);
     });
 
     // local route tests BigQuery
     router.post('/query', async ctx => {
-      console.log('Querying stackoverflow: ', process.env, ctx.req);
+      console.log('Querying stackoverflow: ', ctx.req);
 
       queryStackOverflow();
     })
 
     // remove this line on a real server (possibly)
     server.use(async (ctx, next) => {
-      ctx.set('Content-Security-Policy', `default-src 'none'; script-src 'none'; report-uri ${process.env.REPORT_URI2}`);
+      ctx.set('Content-Security-Policy', `default-src 'none'; script-src 'none'; report-uri ${process.env.REPORT_URI1}`);
       await next();
     });
 
